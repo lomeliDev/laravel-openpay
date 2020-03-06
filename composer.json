@@ -1,0 +1,37 @@
+{
+  "name": "toopago/laravel-openpay",
+  "description": "Una interfaz fluida para Laravel usando el SDK oficial de OpenPay.",
+  "keywords": [
+    "laravel",
+    "OpenPay",
+    "pagos"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "TooPago",
+      "email": "developer@toopago.io"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "nesbot/carbon": "2.30"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TooPago\\OpenPay\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0",
+    "vlucas/phpdotenv": "^4.1"
+  },
+  "autoload": {
+    "classmap": [
+      "sdk"
+    ],
+    "psr-4": {
+      "TooPago\\OpenPay\\": "src/"
+    }
+  }
+}

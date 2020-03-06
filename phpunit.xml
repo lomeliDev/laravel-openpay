@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false">
+    <php>
+        <env name="OPENPAY_ID" value="mxmepypoeqnmr0i6tgk9"/>
+        <env name="OPENPAY_SK" value="sk_be3fc9faa22b4dbbb6bd25a70fb00e32"/>
+        <env name="OPENPAY_PK" value="pk_0026ff3665d54584b293bd134037b0b1"/>
+        <env name="OPENPAY_ENVIROMENT" value="https://sandbox-api.openpay.mx/v1/"/>
+    </php>
+    <testsuites>
+        <testsuite name="Package Test Suite">
+            <directory suffix=".php">./tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
