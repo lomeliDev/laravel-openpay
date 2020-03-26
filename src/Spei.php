@@ -6,56 +6,16 @@ use InvalidArgumentException;
 use TooPago\OpenPay\LaravelOpenPay;
 use Exception;
 
-class Customers
+class Spei
 {
 
 
-    public function newCustomer($customerData , $onSuccess, $onError)
+    public function createChargeBank($customer, $dataCharge , $onSuccess, $onError)
     {
         try {
             $openpay = LaravelOpenPay::setEnvironment();
-            $response = $openpay->customers->add($customerData);
-            if($response && $response->id)
-            {
-                $OpenPay = new \stdClass;
-                $OpenPay->id = $response->id;
-                $onSuccess($OpenPay , $this);    
-            } else {
-                $OpenPay = new \stdClass;
-                $OpenPay->message = 'Operation not allowed';
-                $onError($OpenPay);
-            }
-        } catch (\OpenpayApiRequestError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\OpenpayApiConnectionError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\OpenpayApiAuthError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\OpenpayApiError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\InvalidArgumentException $exc) {
-            $onError($exc);
-        } catch (Exception $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        }
-    }
-
-
-    public function getCustomer($id , $onSuccess, $onError)
-    {
-        try {
-            $openpay = LaravelOpenPay::setEnvironment();
-            $response = $openpay->customers->get($id);
+            $customer = $openpay->customers->get($customer);
+            $response = $customer->charges->create($dataCharge);
             if($response && $response->id)
             {
                 $OpenPay = new \stdClass;
@@ -65,7 +25,7 @@ class Customers
                 $OpenPay = new \stdClass;
                 $OpenPay->message = 'Operation not allowed';
                 $onError($OpenPay);
-            }
+            } 
         } catch (\OpenpayApiRequestError $exc) {
             $OpenPay = new \stdClass;
             $OpenPay->message = $exc->getMessage();
@@ -92,13 +52,21 @@ class Customers
     }
 
 
-
-    public function allCustomers($customerData , $onSuccess, $onError)
+    public function createChargeBankSinCuenta($dataCharge , $onSuccess, $onError)
     {
         try {
             $openpay = LaravelOpenPay::setEnvironment();
-            $response = $openpay->customers->getList($customerData);
-            $onSuccess($response , $this);    
+            $response = $openpay->charges->create($dataCharge);
+            if($response && $response->id)
+            {
+                $OpenPay = new \stdClass;
+                $OpenPay->id = $response->id;
+                $onSuccess($response , $this);    
+            } else {
+                $OpenPay = new \stdClass;
+                $OpenPay->message = 'Operation not allowed';
+                $onError($OpenPay);
+            } 
         } catch (\OpenpayApiRequestError $exc) {
             $OpenPay = new \stdClass;
             $OpenPay->message = $exc->getMessage();
@@ -124,37 +92,5 @@ class Customers
         }
     }
 
-
-    public function deleteCustomer($id , $onSuccess, $onError)
-    {
-        try {
-            $openpay = LaravelOpenPay::setEnvironment();
-            $response = $openpay->customers->get($id);
-            $response->delete();
-            $onSuccess($response , $this);
-        } catch (\OpenpayApiRequestError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\OpenpayApiConnectionError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\OpenpayApiAuthError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\OpenpayApiError $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        } catch (\InvalidArgumentException $exc) {
-            $onError($exc);
-        } catch (Exception $exc) {
-            $OpenPay = new \stdClass;
-            $OpenPay->message = $exc->getMessage();
-            $onError($OpenPay);
-        }
-    }
 
 }

@@ -1,4 +1,4 @@
-#Contribuir con LaravelPayU
+#Contribuir con LaravelOpenPay
 
 ## Pull requests
 
