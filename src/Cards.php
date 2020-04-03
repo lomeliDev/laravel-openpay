@@ -37,7 +37,7 @@ class Cards
         try {
             $openpay = LaravelOpenPay::setEnvironment();
             $response = $openpay->tokens->add($dataCard);
-            dd($response);
+            //dd($response);
             if($response && $response->id)
             {
                 $OpenPay = new \stdClass;

@@ -11,8 +11,8 @@
          syntaxCheck="false">
     <php>
         <env name="OPENPAY_ID" value="mzdtln0bmtms6o3kck8f"/>
-        <env name="OPENPAY_SK" value="sk_e568c42a6c384b7ab02cd47d2e407cab"/>
-        <env name="OPENPAY_PK" value="pk_0026ff3665d54584b293bd134037b0b1"/>
+        <env name="OPENPAY_SK" value="sk_e568c42xxxxxxxxxx"/>
+        <env name="OPENPAY_PK" value="pk_0026ff366xxxxxxxxxxxx1"/>
         <env name="OPENPAY_ENVIROMENT" value="https://sandbox-api.openpay.mx/v1/"/>
     </php>
     <testsuites>
